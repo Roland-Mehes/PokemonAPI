@@ -11,8 +11,6 @@ async function getURL() {
 }
 
 async function pokemon(pokemon) {
-  // pokemon = "";
-
   const data = await fetch(`${api}pokemon/${pokemon}`);
   const jsonData = await data.json();
   return jsonData;

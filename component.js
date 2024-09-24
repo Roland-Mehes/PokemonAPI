@@ -58,7 +58,6 @@ const divBuilder = async () => {
   // Event listener to update Pokémon image when selection changes
   select.addEventListener("change", async () => {
     await loadPokemonImage(select.value, pokemonImg);
-    console.log(loadPokemonImage(select.value, pokemonImg));
   });
 };
 
