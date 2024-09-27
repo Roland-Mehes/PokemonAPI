@@ -1,8 +1,6 @@
-let api = "https://pokeapi.co/api/v2";
+let api = 'https://pokeapi.co/api/v2';
 
-async function getAllPokemon() {
-  const limit = 8; // 150 is the max ;
-  const offset = 0;
+async function getAllPokemon(limit = 10, offset = 0) {
   const res = await fetch(`${api}/pokemon?limit=${limit}&offset=${offset}`);
   const data = await res.json();
   return data;
