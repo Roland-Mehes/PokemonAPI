@@ -9,6 +9,13 @@ const rightArrow = document.querySelector('.right-arrow');
 const search = document.querySelector('.search-input');
 const searchBtn = document.querySelector('.search-button');
 
+// Modal Elements
+const modal = document.getElementById('pokemon-modal');
+const modalName = document.getElementById('modal-pokemon-name');
+const modalImage = document.getElementById('modal-pokemon-image');
+const modalDetails = document.getElementById('modal-pokemon-details');
+const closeButton = document.querySelector('.close-button');
+
 const clearContainer = (container) => {
   container.innerHTML = '';
 };
@@ -25,6 +32,14 @@ const displayPokemon = (name, imageUrl) => {
 
   pokemonImgDiv.append(pokemonImg, pokemonName);
   pokemonMainContainer.append(pokemonImgDiv);
+
+  pokemonImgDiv.addEventListener('click', async () => {
+    modalName.innerHTML = name;
+    modalImage.src = imageUrl;
+
+    const pokemonData = await pokemon(name);
+    modal.style.display = 'block';
+  });
 };
 
 // Render Name and Img
@@ -32,7 +47,6 @@ const renderPokemon = async () => {
   try {
     const data = await getAllPokemon(limit, currentOffset);
     clearContainer(pokemonMainContainer);
-    console.log(data);
     data.results.forEach(async (pokemonItem) => {
       try {
         const pokemonData = await pokemon(pokemonItem.name);
@@ -57,6 +71,7 @@ const paginationCounter = () => {
   }`;
 };
 
+// Event listener for clicks
 rightArrow.addEventListener('click', async () => {
   currentOffset += limit;
   if (currentOffset > 1302 - limit) currentOffset = 1302 - limit;
@@ -89,11 +104,13 @@ const renderPokemonOutOfSearch = async () => {
   }
 };
 
+// Event listener for search button
 searchBtn.addEventListener('click', (event) => {
   event.preventDefault();
   renderPokemonOutOfSearch();
 });
 
+// Search on Enter key press
 search.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     event.preventDefault();
@@ -101,7 +118,25 @@ search.addEventListener('keydown', (event) => {
   }
 });
 
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+closeButton.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   renderPokemon();
   paginationCounter();
+
+  const demo = async () => {
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon-shape/8');
+    const data = res.json();
+    console.log(data);
+  };
+
+  demo();
 });
