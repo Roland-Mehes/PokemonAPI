@@ -9,44 +9,34 @@
   <body>
     <header><h1>Pokédex</h1></header>
 
-    <main>
-      <div class="left-container">
-        <h4>There is 150 different Pokémon in our database!</h4>
-        <hr />
-        <div class="search">
-          <input type="text" class="search-input" placeholder="Search" />
-          <button class="search-button">&#x21fe;</button>
-        </div>
-        <hr />
-        <select name="" id="" class="pokemon-name-select">
-          <option value="" selected disabled>Select Pokemon</option>
-          <option value="">Select Pokemon</option>
-          <option value="">Select Pokemon</option>
-          <option value="">Select Pokemon</option>
-          <option value="">Select Pokemon</option>
-        </select>
-        <div class="pokemon-region-container">
-          <select name="" id="" class="pokemon-type-select">
-            <option value="" selected disabled>Type</option>
-          </select>
-          <select name="" id="" class="pokemon-region-select">
-            <option value="" selected disabled>Region</option>
-          </select>
-        </div>
-        <button class="select-btn">&#x21fe;</button>
-      </div>
+    <navbar class="search-container">
+      <h4>There is 1302 different Pokémon in our database!</h4>
 
-      <div class="right-container">
+      <div class="search">
+        <input type="text" class="search-input" placeholder="Search" />
+        <button class="search-button">&#x1F50E;</button>
+      </div>
+    </navbar>
+
+    <main>
+      <div class="white-content-container">
         <div class="pokemon-container"></div>
         <div class="pagination-container">
-          <span class="left-arrow">&#x21e6;</span><span>-</span
-          ><span class="right-arrow">&#x21e8;</span>
+          <span class="left-arrow"></span><span>-</span
+          ><span class="right-arrow"></span>
         </div>
       </div>
     </main>
-
     <footer></footer>
 
+    <div id="pokemon-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="modal-pokemon-name"></div>
+        <img id="modal-pokemon-image" src="" alt="Pokemon Image" />
+        <div id="modal-pokemon-details"></div>
+      </div>
+    </div>
     <script src="script.js" type="module"></script>
   </body>
 </html>
