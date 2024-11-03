@@ -138,6 +138,7 @@ main {
   padding: 5px;
   height: 100%;
   overflow-y: auto;
+  /* flex-direction: column; */
 }
 
 .pokemon-card {
@@ -180,6 +181,12 @@ main {
 .right-arrow {
   padding: 3px 0px;
   cursor: pointer;
+}
+
+.go-back {
+  color: blue;
+  cursor: pointer;
+  row-gap: 100px;
 }
 
 /* Footer */
