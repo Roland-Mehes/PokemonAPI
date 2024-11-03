@@ -99,8 +99,21 @@ const renderPokemonOutOfSearch = async () => {
   if (searchValue) {
     try {
       const img = await pokemon(searchValue);
+      const goBack = document.createElement('p');
+      goBack.innerHTML = 'Go back to the main page.';
+      goBack.className = 'go-back';
+
       clearContainer(pokemonMainContainer);
       displayPokemon(img.name, img.sprites.front_default);
+      pokemonMainContainer.style.flexDirection = 'column';
+      pokemonMainContainer.style.rowGap = '100px';
+      pokemonMainContainer.append(goBack);
+
+      goBack.addEventListener('click', () => {
+        pokemonMainContainer.style.flexDirection = 'row';
+        pokemonMainContainer.style.rowGap = '';
+        renderPokemon();
+      });
     } catch (error) {
       clearContainer(pokemonMainContainer);
       pokemonMainContainer.innerHTML = `${searchValue} Pokémon is not in our database!`;
@@ -138,12 +151,4 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPokemon();
   paginationCounter();
 
-  // const demo = async () => {
-  //   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/bulbasaur`);
-  //   const data = res.json();
-  //   console.log(data);
-  //   console.log(data.height);
-  // };
-
-  // demo();
 });
