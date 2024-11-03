@@ -33,11 +33,17 @@ const displayPokemon = (name, imageUrl) => {
   pokemonImgDiv.append(pokemonImg, pokemonName);
   pokemonMainContainer.append(pokemonImgDiv);
 
+  // Display Modal
   pokemonImgDiv.addEventListener('click', async () => {
     modalName.innerHTML = name;
     modalImage.src = imageUrl;
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const data = await res.json();
 
-    const pokemonData = await pokemon(name);
+    const abilities = data.abilities.map((ability) => ability.ability.name);
+
+    console.log(abilities);
+
     modal.style.display = 'block';
   });
 };
@@ -132,11 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPokemon();
   paginationCounter();
 
-  const demo = async () => {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon-shape/8');
-    const data = res.json();
-    console.log(data);
-  };
+  // const demo = async () => {
+  //   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/bulbasaur`);
+  //   const data = res.json();
+  //   console.log(data);
+  //   console.log(data.height);
+  // };
 
-  demo();
+  // demo();
 });
