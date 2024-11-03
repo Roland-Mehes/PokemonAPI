@@ -51,7 +51,7 @@ header > h1 {
   font-family: Pokemon;
   margin: 0;
   padding: 0;
-  font-size: 5vw;
+  font-size: 6vw;
   color: var(--dark-bg-color);
   text-shadow: 3px 4px 3px var(--dark-main-color);
 }
@@ -236,4 +236,38 @@ footer {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (width < 800px) {
+  .pokemon-card {
+    width: calc(100% / 3 - 20px);
+  }
+  .pokemon-img-container img {
+    width: 60%;
+    height: auto;
+  }
+  h4 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (width < 500px) {
+  .pokemon-card {
+    font-size: 0.8rem;
+    width: calc(100% / 2 - 20px);
+  }
+
+  .pokemon-card img {
+    width: 50px;
+    height: auto;
+    font-size: 0.3rem;
+  }
+
+  h4 {
+    font-size: 0.6rem;
+  }
+
+  header > h1 {
+    font-size: 10vw;
+  }
 }
